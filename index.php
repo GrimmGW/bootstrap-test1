@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Pagina de Boostrap</title>
+    <link rel="stylesheet" href="extras.css">
+    <link rel="shortcut icon" href="assets/icons/dom.png" type="image/x-icon">
+    <title>Página de Boostrap</title>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg bg-light">
@@ -16,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Acerca de mi</a>
+                        <a class="nav-link" href="#">Acerca de mí</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mis trabajos</a>
@@ -33,9 +35,9 @@
 <body>
     <section id="intro">
         <div class="container-fluid d-flex align-items-center text-center justify-content-center text-light" 
-        style="background-image: url(assets/images/landscape-bootstrap.jpg); height: 100vh; background-size: cover; background-position: center;">
+        style="background-image: url(assets/images/landscape_darken.jpg); height: 100vh; background-size: cover; background-position: center;">
             <div>
-                <h1 style="font-size: 52px;">Bienvenido a mi pagina</h1>
+                <h1 style="font-size: 52px;">Bienvenido a mi página👋</h1>
                 <p class="mt-4">Exercitation non adipisicing nulla anim veniam. Exercitation non adipisicing nulla anim veniam.</p>
                 <button type="button" class="btn btn-outline-light me-3">Iniciar sesion</button>
                 <button type="button" class="btn btn-light px-5">Registrarse</button>
@@ -57,20 +59,25 @@
         <div class="container-fluid row text-light">
             <form class="col-lg-4" method="POST">
                 <h3 class="text-center">Registro de productos</h3>
+                <?php 
+                    include "model/conn.php";
+                    include "controller/create_product_controller.php";
+                    include "controller/delete_product_controller.php";
+                ?>
                 <div class="mt-4">
                     <label for="form_nombre_producto" class="form-label">Nombre del producto</label>
-                    <input type="text" class="form-control bg-dark text-light" name="nombre_producto">
+                    <input type="text" class="form-control bg-dark text-light" name="nombre_producto" require>
                 </div>
                 <div class="mt-4">
                     <label for="form_cantidad_producto" class="form-label">Cantidades del producto</label>
-                    <input type="number" class="form-control bg-dark text-light" name="cantidad_producto">
+                    <input type="number" class="form-control bg-dark text-light" name="cantidad_producto" require>
                 </div>
                 <div class="mt-4">
                     <label for="form_marca_producto" class="form-label">Marca del producto</label>
-                    <input type="text" class="form-control bg-dark text-light" name="marca_producto">
+                    <input type="text" class="form-control bg-dark text-light" name="marca_producto" require>
                 </div>
 
-                <button type="submit" class="btn btn-warning mt-4" name="btn_registrar" value="ok">Registrar producto</button>
+                <button type="submit" class="btn btn-warning mt-4" name="btnregistrar" value="ok">Registrar producto</button>
             </form>
             <?php
                 include "model/conn.php";
@@ -84,6 +91,7 @@
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Marca</th>
+                            <th colspan="2">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,6 +103,10 @@
                             <td><?= $datos->nombre_producto ?></td>
                             <td><?= $datos->cantidad_producto ?></td>
                             <td><?= $datos->marca_producto ?></td>
+                            <?php 
+                                echo "<td><a href='edit_index.php?id=$datos->id' class='btn btn-warning'><i class='fa-solid fa-pencil'></i></a></td>";
+                                echo "<td><a onclick='return confirm(\"¿Deseas borrar este producto? :(\")' href='index.php?id=$datos->id' class='btn btn-danger'><i class='fa-solid fa-trash-can'></i></a></td>";
+                            ?>
                         </tr>
                         <?php
                             }
@@ -108,5 +120,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a5601269a3.js" crossorigin="anonymous"></script>
 
 </html>
