@@ -1,12 +1,22 @@
+<?php
+
+session_start();
+if(empty($_SESSION["id"])){
+    header("location:login.php ");
+}
+
+?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-VE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="extras.css">
     <link rel="shortcut icon" href="assets/icons/dom.png" type="image/x-icon">
-    <title>Página de Boostrap</title>
+    <title>Página de Bootstrap</title>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg bg-light">
@@ -37,10 +47,10 @@
         <div class="container-fluid d-flex align-items-center text-center justify-content-center text-light" 
         style="background-image: url(assets/images/landscape_darken.jpg); height: 100vh; background-size: cover; background-position: center;">
             <div>
-                <h1 style="font-size: 52px;">Bienvenido a mi página👋</h1>
+                <h1 style="font-size: 52px;">Bienvenido, <?= $_SESSION["user"] ?>👋</h1>
                 <p class="mt-4">Exercitation non adipisicing nulla anim veniam. Exercitation non adipisicing nulla anim veniam.</p>
                 <button type="button" class="btn btn-outline-light me-3">Iniciar sesion</button>
-                <button type="button" class="btn btn-light px-5">Registrarse</button>
+                <a href="controller/logout_controller.php" class="btn btn-danger px-5">Cerrar sesion</a>
             </div>
         </div>
     </section>
