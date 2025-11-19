@@ -28,10 +28,10 @@ if(empty($_SESSION["id"])){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Acerca de mí</a>
+                        <a class="nav-link" href="#about">Acerca de la pagina</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mis trabajos</a>
+                        <a class="nav-link" href="#productos">Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contacto</a>
@@ -65,7 +65,7 @@ if(empty($_SESSION["id"])){
             </div>
         </div>
     </section>
-    <section id="registro" class="mt-5 p-5 bg-dark">
+    <section id="productos" class="mt-5 p-5 bg-dark">
         <div class="container-fluid row text-light">
             <form class="col-lg-4" method="POST">
                 <h3 class="text-center">Registro de productos</h3>
@@ -101,7 +101,11 @@ if(empty($_SESSION["id"])){
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Marca</th>
-                            <th colspan="2">Acciones</th>
+                            <?php
+                                if($_SESSION["admin"] == 1){
+                                    echo "<th colspan='2'>Acciones</th>";
+                                }
+                            ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,8 +118,10 @@ if(empty($_SESSION["id"])){
                             <td><?= $datos->cantidad_producto ?></td>
                             <td><?= $datos->marca_producto ?></td>
                             <?php 
-                                echo "<td><a href='edit_index.php?id=$datos->id' class='btn btn-warning'><i class='fa-solid fa-pencil'></i></a></td>";
-                                echo "<td><a onclick='return confirm(\"¿Deseas borrar este producto? :(\")' href='index.php?id=$datos->id' class='btn btn-danger'><i class='fa-solid fa-trash-can'></i></a></td>";
+                                if($_SESSION["admin"] == 1){
+                                    echo "<td><a href='edit_index.php?id=$datos->id' class='btn btn-warning'><i class='fa-solid fa-pencil'></i></a></td>";
+                                    echo "<td><a onclick='return confirm(\"¿Deseas borrar este producto? :(\")' href='index.php?id=$datos->id' class='btn btn-danger'><i class='fa-solid fa-trash-can'></i></a></td>";
+                                }
                             ?>
                         </tr>
                         <?php
@@ -127,6 +133,8 @@ if(empty($_SESSION["id"])){
         </div>
     </section>
 </body>
+
+<?php include "other/footer.php"; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>

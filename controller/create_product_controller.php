@@ -9,7 +9,7 @@
 
             $sql = $conn->query(" insert into productos (nombre_producto, cantidad_producto, marca_producto) values('$nombre_producto', $cantidad_producto, '$marca_producto') ");
             if($sql == true){
-                header("location: index.php");
+                header("location: index.php#productos");
             } else {
                 echo "<div class='alert alert-danger'>Error al crear el producto.</div>";
             }

@@ -11,7 +11,7 @@
             $sql = $conn->query(" update productos set nombre_producto = '$nombre_producto', cantidad_producto = '$cantidad_producto', marca_producto = '$marca_producto' where id = $id ");
 
             if($sql == true){
-                header("location: index.php");
+                header("location: index.php#productos");
             } else {
                 echo "<div class='alert alert-danger'>Error al actualizar el producto.</div>";
             }
